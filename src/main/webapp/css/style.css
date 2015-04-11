@@ -22,6 +22,10 @@ html, body {
     padding: 0;
 }
 
+.leaflet-areaselect-container {
+    display: none;
+}
+
 /*===========================*/
 /*//////// DROPDOWN /////////*/
 /*===========================*/
@@ -68,6 +72,10 @@ html, body {
     margin: 15px;
 }
 
+/*===========================*/
+/*/////// THE BUTTON ////////*/
+/*===========================*/
+
 .button-block {
     display: block;
 }
@@ -77,6 +85,14 @@ html, body {
     width: 100%;
 }
 
+/*===========================*/
+/*///////// GENERAL /////////*/
+/*===========================*/
+
 .padding-to-navbar {
     padding-top: 50px;
+}
+
+html {
+    overflow: hidden;
 }

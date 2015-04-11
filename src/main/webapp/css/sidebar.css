@@ -4,15 +4,13 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-/* Toggle Styles */
+/*===========================*/
+/*///////// WRAPPER /////////*/
+/*===========================*/
 
 #wrapper {
     padding-left: 0;
 }
-
-/*#wrapper.toggled {
-    padding-left: 250px;
-}*/
 
 #sidebar-wrapper {
     z-index: 1000;
@@ -29,10 +27,6 @@
     -o-transition: all 0.25s ease;
     transition: all 0.25s ease;
 }
-
-/*#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-}*/
 
 #page-content-wrapper {
     width: 75%;
@@ -57,17 +51,9 @@
     width: 80% !important;
 }
 
-/*.wrapper-toggled {
-    position: absolute;
-    margin-right: -250px;
-}*/
-
-/*#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
-}*/
-
-/* Sidebar Styles */
+/*===========================*/
+/*///////// SIDEBAR /////////*/
+/*===========================*/
 
 .sidebar-nav {
     margin-top: 25px !important;
