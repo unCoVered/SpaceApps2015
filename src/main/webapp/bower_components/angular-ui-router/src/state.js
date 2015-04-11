@@ -503,7 +503,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    *       templateUrl: "body.html"
    *     }, footer: {
    *       controller: "footCtrl",
-   *       templateUrl: "footer.html"
+   *       templateUrl: "sidebar.html"
    *     }
    *   }</pre>
    *
