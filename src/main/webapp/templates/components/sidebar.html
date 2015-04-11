@@ -1,0 +1,26 @@
+<br>
+<form class="sidebar-nav" ng-submit="submit()">
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">Date 1</div>
+            <input type="date" class="form-control border-top-right" id="date1input" placeholder="not selected">
+            <select class="form-control no-border-top-right">
+                <option ng-repeat="hour in hours">{{hour}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">Date 2<br><br>[opt]</div>
+            <input type="date" class="form-control border-top-right" id="date2input" placeholder="not selected">
+            <select class="form-control no-border-top-right">
+                <option ng-repeat="hour in hours">{{hour}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group button-block">
+            <button type="submit" class="btn btn-primary the-button">Send</button>
+        </div>
+    </div>
+</form>
