@@ -1,9 +1,9 @@
 angular.module('starter')
 
-    .controller('MainCtrl', [ '$scope', '$state', '$location', function($scope,$state,$location){
+    .controller('MainCtrl', [ '$scope', '$state', '$location', 'geoService', function($scope,$state,$location,geoService){
 
         //===========================//
-        /////* LEAFLET INIT VARS */////
+        ////// LEAFLET INIT VARS //////
         //===========================//
 
         var MIN_ZOOM = 3;
@@ -15,7 +15,7 @@ angular.module('starter')
         var MAP_LON = -0.8883134;
 
         //===========================//
-        /////* LEAFLET BASE MAP *//////
+        ////// LEAFLET BASE MAP ///////
         //===========================//
 
         var map = L.map('map',{zoomControl: false}).setView([MAP_LAT, MAP_LON], INIT_ZOOM);
@@ -29,7 +29,7 @@ angular.module('starter')
         }).addTo(map);
 
         //===========================//
-        ////////* WORLD LIMIT *////////
+        ///////// WORLD LIMIT /////////
         //===========================//
 
         map.bounds = [],
@@ -42,7 +42,7 @@ angular.module('starter')
         map.fitBounds(bounds);
 
         //===========================//
-        ///////* AREA SELECTOR *///////
+        //////// AREA SELECTOR ////////
         //===========================//
 
         $scope.swlat = "";
@@ -61,7 +61,7 @@ angular.module('starter')
         areaSelect.addTo(map);
 
         //===========================//
-        ///////////* HOURS *///////////
+        //////////// HOURS ////////////
         //===========================//
 
         $scope.hours = ["00:00", "00:15", "00:30", "00:45",
@@ -91,7 +91,7 @@ angular.module('starter')
                         ];
 
         //===========================//
-        //////* SUBMIT REQUEST *///////
+        /////// SUBMIT REQUEST ////////
         //===========================//
 
         $scope.date1 = "";
@@ -130,12 +130,18 @@ angular.module('starter')
                         $scope.nelat + "/" + $scope.nelon + "/" +
                         tmp1 + ":" + $scope.date1hours +
                         (has2dates ? "/" + tmp2 + ":" + $scope.date2hours : "");
+                geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,
+                                    tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates);
                 console.log(url);
             }else{
                 $scope.errorMessage = "First date is wrong. ";
                 $scope.date1errors = true;
             };
         };
+
+        //===========================//
+        /////// ERROR VALIDATION //////
+        //===========================//
 
         $scope.isValid = function(data){
             if(data == "" || data == null || data == undefined){

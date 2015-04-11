@@ -1,5 +1,9 @@
 angular.module('starter', ['ui.router'])
 
+    //===========================//
+    /////// ROUTES AND VIEWS //////
+    //===========================//
+
     .config(function($stateProvider, $urlRouterProvider){
         $stateProvider
 

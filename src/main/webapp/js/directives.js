@@ -1,5 +1,9 @@
 angular.module("starter")
 
+    //===========================//
+    /////////// NAVBAR ////////////
+    //===========================//
+
     .directive('navbar', function(){
         return {
             restrict: 'E',
@@ -7,7 +11,11 @@ angular.module("starter")
         }
     })
 
-    .directive('footer', function(){
+    //===========================//
+    /////////// SIDEBAR ///////////
+    //===========================//
+
+    .directive('sidebar', function(){
         return {
             restrict: 'E',
             templateUrl: 'templates/components/sidebar.html'
