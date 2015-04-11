@@ -17,19 +17,28 @@ angular.module('starter')
                         date1 + ":" + date1hours +
                         (has2dates ? "/" + date2 + ":" + date2hours : "");
 
-            alert(API.URL + params);
-            $http({
-                /*method: "POST",
-                url: API.URL,
-                params: {
-                    action: "add"
+            var dummy = {
+                rect: {
+                    swlat: swlat,
+                    swlon: swlon,
+                    nelat: nelat,
+                    nelon: nelon
                 },
-                data: {
-                    name: name
-                }*/
-                method: "GET",
-                url: API.URL + params
-            }).success(function(data){
+                dates: {
+                    date1: date1,
+                    hour1: date1hours,
+                    date2: has2dates ? date2 : null,
+                    hour2: has2dates ? date2hours : null
+                }
+            };
+            //alert(API.URL + params);
+            $http.post(
+                API.URL + params,
+                JSON.stringify(dummy),
+                {
+                    'Content-Type': 'application/json'
+                }
+            ).success(function(data){
                 console.log("Got data.");
                 return data;
             }).error(function(data){

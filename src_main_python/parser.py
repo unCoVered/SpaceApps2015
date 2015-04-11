@@ -17,9 +17,12 @@ def parse_data(input_dir, output_file):
                         dir[name]['name'] = time_serie['sourceInfo']['siteName']
 
                         dir[name]['coord'] = {}
-                        dir[name]['coord']['latitude'] = float(time_serie['sourceInfo']['geoLocation']['geogLocation']['latitude'])
-                        dir[name]['coord']['longitude'] = float(
-                            time_serie['sourceInfo']['geoLocation']['geogLocation']['longitude'])
+                        lat = float(time_serie['sourceInfo']['geoLocation']['geogLocation']['latitude'])
+                        long = float(time_serie['sourceInfo']['geoLocation']['geogLocation']['longitude'])
+
+                        dir[name]['coord']['latitude'] = lat
+                        dir[name]['coord']['longitude'] = long
+                        dir[name]['sphere'] = [lat, long]
 
                     dummy = {}
                     if len(time_serie['values']) > 0 and len(time_serie['values'][0]['value']) >0:
