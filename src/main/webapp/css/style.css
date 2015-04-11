@@ -80,3 +80,11 @@ html, body {
 .padding-to-navbar {
     padding-top: 50px;
 }
+
+html {
+    overflow: hidden;
+}
+
+.leaflet-areaselect-container {
+    display: none;
+}
