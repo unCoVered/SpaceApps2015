@@ -1,5 +1,8 @@
-#map
-{
+/*===========================*/
+/*//////// FILL MAP /////////*/
+/*===========================*/
+
+#map {
     width: 100px;
     height:100px;
     min-height: 100%;
@@ -7,32 +10,78 @@
     display: block;
 }
 
-html, body
-{
+html, body {
     height: 100%;
 }
 
-.fill
-{
+.fill {
     min-height: 100%;
     height: 100%;
     width: 100%;
     min-width: 100%;
-    margin-top: 52px;
-    margin-bottom: 52px;
-}
-
-.container {
     padding: 0;
 }
 
-.navbar-header, .navbar-nav {
-    float: left;
-    padding: 15px;
-    text-align: center;
-    width: 100%;
+/*===========================*/
+/*//////// DROPDOWN /////////*/
+/*===========================*/
+
+.dropdown-menu .sub-menu {
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
 }
 
-.navbar-brand {
-    float:none;
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    background-color: #262626;
+    color: #9d9d9d;
+}
+
+.dropdown-menu>li>a {
+    color: #9d9d9d;
+}
+
+.margin-7px {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+@media (min-width: 760px) {
+
+    .margin-7px {
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+}
+
+/*===========================*/
+/*/////// FOOTER FORM ///////*/
+/*===========================*/
+
+.center {
+    min-width: 768px;
+    text-align:center;
+    float: none;
+}
+
+.center form {
+    display:inline-block;
+}
+
+.no-border-top-right {
+    border-top-right-radius: 0;
+}
+
+.border-top-right {
+    border-top-right-radius: 4px !important;
+}
+
+.the-button {
+    padding: 25px;
 }
