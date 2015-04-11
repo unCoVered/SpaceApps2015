@@ -30,13 +30,16 @@ def parse_data(input_dir, output_file):
                         except KeyError:
                             dir[name]['flowDate'] = []
                             dir[name]['flowDate'].append(dummy)
+                    else:
+                        print "some error"
             except ValueError:
                 print "dummy"
 
     for key, val in dir.items():
-        list = map(lambda x: float(x['flow']), val['flowDate'])
+        if 'flowDate' in val:
+            list = map(lambda x: float(x['flow']), val['flowDate'])
 
-        dir[key]['meanFlow'] = sum(list) / len(list)
+            dir[key]['meanFlow'] = sum(list) / len(list)
 
     with open(output_file, 'wb') as fp:
         pickle.dump(dir, fp)
