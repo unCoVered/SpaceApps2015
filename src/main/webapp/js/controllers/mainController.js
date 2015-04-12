@@ -1,6 +1,6 @@
 angular.module('starter')
 
-    .controller('MainCtrl', [ '$scope', 'UTIL', 'geoService', function($scope,UTIL,geoService){
+    .controller('MainCtrl', [ '$scope', '$timeout', 'UTIL', 'geoService', function($scope,$timeout,UTIL,geoService){
 
         geoService.placeBaseMap($scope);
 
@@ -21,6 +21,8 @@ angular.module('starter')
         $scope.date1errors = false;
         $scope.date2errors = false;
         $scope.errorMessage = "";
+        $scope.count = 0;
+        $scope.dataCollection = "";
 
         $scope.submit = function(){
 
@@ -37,17 +39,11 @@ angular.module('starter')
                     $scope.validDates(tmp1,tmp2);
                     has2dates = true;
                 }
-                var data = geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,
-                                    tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates);
+                //var data = geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates);
+                $scope.dataCollection = UTIL.TEST_POINT;
+                console.log($scope.dataCollection);
+                displayData();
                 $scope.date2 = "";
-                /*L.geoJson(data, {
-                    style: function (feature) {
-                        return {color: feature.properties.color};
-                    },
-                    onEachFeature: function (feature, layer) {
-                        layer.bindPopup(feature.properties.description);
-                    }
-                }).addTo(map);*/
 
             }else{
                 $scope.errorMessage = "First date is wrong. ";
@@ -92,6 +88,14 @@ angular.module('starter')
         $scope.hideErrorMessage = function(){
             $scope.date1errors = false;
             $scope.date2errors = false;
+        };
+
+         function displayData(){
+            console.log($scope.count + " " + $scope.dataCollection.length);
+            geoService.placeGeoJSON($scope,$scope.dataCollection[$scope.count++]);
+            $scope.count = ($scope.count)%$scope.dataCollection.length;
+
+            $timeout(displayData,2000);
         };
 
     }]);
