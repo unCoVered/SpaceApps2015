@@ -4,6 +4,7 @@ angular.module('starter')
         return({
             getData: getData,
             placeBaseMap: placeBaseMap,
+            placeRivers: placeRivers,
             placeGeoJSON: placeGeoJSON
         });
 
@@ -18,6 +19,9 @@ angular.module('starter')
             //            date1 + ":" + date1hours +
             //            (has2dates ? "/" + date2 + ":" + date2hours : "");
 
+            var millis1 = date1 + Number(date1hours.substring(0,2))*60*60*1000 + Number(date1hours.substring(3,5))*60*1000;
+            var millis2 = has2dates ? date2 + Number(date2hours.substring(0,2))*60*60*1000 + Number(date2hours.substring(3,5))*60*1000 : 0;
+
             var dummy = {
                 rect: {
                     swlat: swlat,
@@ -25,16 +29,11 @@ angular.module('starter')
                     nelat: nelat,
                     nelon: nelon
                 },
-                dates: {
-                    date1: date1,
-                    hour1: date1hours,
-                    date2: has2dates ? date2 : null,
-                    hour2: has2dates ? date2hours : null
-                }
+                date_lower: millis1,
+                date_upper: has2dates ? millis2 : millis1
             };
-            alert(API.URL + params);
             $http.post(
-                API.URL + params,
+                API.URL,
                 JSON.stringify(dummy),
                 {
                     'Content-Type': 'application/json'
@@ -75,10 +74,12 @@ angular.module('starter')
 
             $scope.map.attributionControl.setPrefix('');
 
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
+                subdomains: ['1', '2', '3', '4'],
                 minZoom: MIN_ZOOM,
-                maxZoom: MAX_ZOOM,
-                crs: L.CRS.EPSG4326
+                maxZoom: MAX_ZOOM
+                //crs: L.CRS.EPSG4326
             }).addTo($scope.map);
 
             //===========================//
@@ -114,8 +115,19 @@ angular.module('starter')
             areaSelect.addTo($scope.map);
         };
 
+
+        function placeRivers($scope){
+            $http.get("data/rivers.geojson").success(function(data){
+                console.log(data);
+                L.geoJson(data, {style: function(feature){return {weight: 1.5}}}).addTo($scope.map);
+            });
+        };
+
+        //===========================//
+        /////// GEOJSON POINTS ////////
+        //===========================//
+
         function placeGeoJSON($scope, data){
-            console.log(data);
 
             var geojsonMarkerOptions = {
                 radius: 5,
@@ -128,7 +140,6 @@ angular.module('starter')
 
             L.geoJson(data, {
                 style: function(feature){
-                    console.log(data.meanFlow);
                     return {color: filterColor(feature.properties.meanFlow, feature.properties.flow)}
                 },
                 pointToLayer: function (feature, latlng) {

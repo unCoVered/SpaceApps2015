@@ -1,4 +1,4 @@
-angular.module('starter', ['ui.router'])
+angular.module('starter', ['ui.router', 'ui.bootstrap'])
 
     //===========================//
     /////// ROUTES AND VIEWS //////

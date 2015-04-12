@@ -8,6 +8,10 @@ angular.module('starter')
         "URL": "http://192.168.1.122:5000/rivers/"
     })
 
+    //===========================//
+    ////////// APP UTILS //////////
+    //===========================//
+
     .constant("UTIL", {
         "HOURS": ["00:00", "00:15", "00:30", "00:45",
             "01:00", "01:15", "01:30", "01:45",
@@ -69,7 +73,157 @@ angular.module('starter')
                     "properties": {
                         "popupContent": "asdf",
                         "meanFlow": 67,
-                        "flow": 80
+                        "flow": 60
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -90.1814167,
+                            30.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "foobar",
+                        "meanFlow": 67,
+                        "flow": 67
+                    }
+                }
+            ]
+        },
+        {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -96.1814167,
+                            38.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "derp",
+                        "meanFlow": 67,
+                        "flow": 60
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -96.1814167,
+                            30.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "asdf",
+                        "meanFlow": 67,
+                        "flow": 60
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -90.1814167,
+                            30.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "foobar",
+                        "meanFlow": 67,
+                        "flow": 60
+                    }
+                }
+            ]
+        },
+        {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -96.1814167,
+                            38.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "derp",
+                        "meanFlow": 67,
+                        "flow": 60
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -96.1814167,
+                            30.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "asdf",
+                        "meanFlow": 67,
+                        "flow": 60
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -90.1814167,
+                            30.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "foobar",
+                        "meanFlow": 67,
+                        "flow": 60
+                    }
+                }
+            ]
+        },
+        {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -96.1814167,
+                            38.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "derp",
+                        "meanFlow": 67,
+                        "flow": 67
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -96.1814167,
+                            30.3851111
+                        ]
+                    },
+                    "properties": {
+                        "popupContent": "asdf",
+                        "meanFlow": 67,
+                        "flow": 60
                     }
                 },
                 {
