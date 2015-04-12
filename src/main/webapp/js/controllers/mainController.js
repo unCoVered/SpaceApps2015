@@ -45,11 +45,11 @@ angular.module('starter')
                     has2dates = true;
                 }
                 var data = geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,
-                                                tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates);
-                //$scope.dataCollection = data;
-                $scope.dataCollection = UTIL.TEST_POINT;
-                console.log($scope.dataCollection);
-                displayData();
+                                                tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates, servicio);
+
+                //$scope.dataCollection = UTIL.TEST_POINT;
+                //console.log($scope.dataCollection);
+                //displayData();
                 $scope.date2 = "";
 
             } else {
@@ -101,6 +101,11 @@ angular.module('starter')
         //////// DISPLAY DATA /////////
         //===========================//
 
+        function servicio(data){
+            $scope.dataCollection = data;
+            displayData();
+        }
+
         function displayData() {
             $scope.showProgress = true;
             geoService.placeGeoJSON($scope, $scope.dataCollection[$scope.count]);
@@ -109,7 +114,7 @@ angular.module('starter')
             $scope.loaded_per = ($scope.count+1)/$scope.countTo * 100;
             $scope.count++;
             if($scope.count < $scope.dataCollection.length){
-                $timeout(displayData, 2000);
+                $timeout(displayData, 500);
             }else{
                 $scope.showProgress = false;
                 $scope.showReplay = true;

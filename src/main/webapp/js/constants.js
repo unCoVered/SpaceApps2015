@@ -5,7 +5,7 @@ angular.module('starter')
     //===========================//
 
     .constant("API", {
-        "URL": "http://192.168.1.122:5000/rivers/"
+        "URL": "http://localhost:5000/rivers/"
     })
 
     //===========================//

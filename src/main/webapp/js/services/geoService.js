@@ -12,15 +12,17 @@ angular.module('starter')
         /////// RIVER FLOW DATA ///////
         //===========================//
 
-        function getData( swlat, swlon, nelat, nelon, date1, date1hours, date2, date2hours, has2dates ) {
+        function getData( swlat, swlon, nelat, nelon, date1, date1hours, date2, date2hours, has2dates, callback) {
 
-            //var params = swlat + "/" + swlon + "/" +
-            //            nelat + "/" + nelon + "/" +
+            var params = swlat + "/" + swlon + "/" +
+                        nelat + "/" + nelon + "/";
             //            date1 + ":" + date1hours +
             //            (has2dates ? "/" + date2 + ":" + date2hours : "");
 
-            var millis1 = date1 + Number(date1hours.substring(0,2))*60*60*1000 + Number(date1hours.substring(3,5))*60*1000;
-            var millis2 = has2dates ? date2 + Number(date2hours.substring(0,2))*60*60*1000 + Number(date2hours.substring(3,5))*60*1000 : 0;
+            console.log(params);
+
+            var millis1 = date1/1000 + Number(date1hours.substring(0,2))*60*60 + Number(date1hours.substring(3,5))*60;
+            var millis2 = has2dates ? date2/1000 + Number(date2hours.substring(0,2))*60*60 + Number(date2hours.substring(3,5))*60 : 0;
 
             var dummy = {
                 rect: {
@@ -32,6 +34,7 @@ angular.module('starter')
                 date_lower: millis1,
                 date_upper: has2dates ? millis2 : millis1
             };
+            console.log(JSON.stringify(dummy));
             $http.post(
                 API.URL,
                 JSON.stringify(dummy),
@@ -40,11 +43,11 @@ angular.module('starter')
                 }
             ).success(function(data){
                 console.log("Got data.");
-                return data;
+                var dataCollection = data.array;
+                callback(dataCollection);
             }).error(function(data){
                 console.log("Got nothing.");
                 console.log(data);
-                return null;
             });
         };
 

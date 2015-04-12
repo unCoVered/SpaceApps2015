@@ -1,5 +1,6 @@
 # coding = utf-8
 from flask import Flask, send_from_directory, request, jsonify, Response
+from flask.ext.cors import CORS, cross_origin
 import logging
 import json
 import time
@@ -11,9 +12,11 @@ CLIENT = MongoClient()
 DB = CLIENT.SpaceApps2015
 COL = DB.point_col
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-
-@app.route('/rivers', methods=['POST'], )
+@app.route('/rivers/', methods=['POST', 'OPTIONS'])
+@cross_origin()
 def pos():
     """
         1. parsear fecha
@@ -21,8 +24,11 @@ def pos():
     """
     # Parse date
     j_data = request.get_json(force=True)
-    date_lower = long(time.mktime(parse(j_data['date_lower']).timetuple()))
-    date_upper = long(time.mktime(parse(j_data['date_upper']).timetuple()))
+    # date_lower = long(time.mktime(parse(j_data['date_lower']).timetuple()))
+    # date_upper = long(time.mktime(parse(j_data['date_upper']).timetuple()))
+    date_lower = long(j_data['date_lower'])
+    date_upper = long(j_data['date_upper'])
+    print (date_lower, date_upper)
     swlat = long(j_data['rect']['swlat'])
     nelat = long(j_data['rect']['nelat'])
     swlon = long(j_data['rect']['swlon'])
@@ -65,8 +71,8 @@ def pos():
                 print
         geo_array.append(dummy_dir)
 
-
-    return Response(json.dumps(geo_array), mimetype='application/json')
+    dummy = {"array": geo_array}
+    return Response(json.dumps(dummy), mimetype='application/json')
 
 
 @app.route('/')
