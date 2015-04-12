@@ -79,7 +79,6 @@ angular.module('starter')
                 subdomains: ['1', '2', '3', '4'],
                 minZoom: MIN_ZOOM,
                 maxZoom: MAX_ZOOM
-                //crs: L.CRS.EPSG4326
             }).addTo($scope.map);
 
             //===========================//
@@ -115,10 +114,8 @@ angular.module('starter')
             areaSelect.addTo($scope.map);
         };
 
-
         function placeRivers($scope){
             $http.get("data/rivers.geojson").success(function(data){
-                console.log(data);
                 L.geoJson(data, {style: function(feature){return {weight: 1.5}}}).addTo($scope.map);
             });
         };
@@ -162,5 +159,5 @@ angular.module('starter')
             }else{
                 return UTIL.COLORS.GREEN;
             }
-        }
+        };
     });

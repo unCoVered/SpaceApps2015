@@ -44,17 +44,18 @@ angular.module('starter')
                     $scope.validDates(tmp1, tmp2);
                     has2dates = true;
                 }
-                var data = geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates);
+                var data = geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,
+                                                tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates);
+                //$scope.dataCollection = data;
                 $scope.dataCollection = UTIL.TEST_POINT;
-                //console.log($scope.dataCollection);
+                console.log($scope.dataCollection);
                 displayData();
                 $scope.date2 = "";
 
             } else {
                 $scope.errorMessage = "First date is wrong. ";
                 $scope.date1errors = true;
-            }
-            ;
+            };
         };
 
         //===========================//
@@ -107,7 +108,6 @@ angular.module('starter')
             $scope.count = ($scope.count) % $scope.dataCollection.length;
             $scope.loaded_per = ($scope.count+1)/$scope.countTo * 100;
             $scope.count++;
-            console.log($scope.count + ", " + $scope.dataCollection.length);
             if($scope.count < $scope.dataCollection.length){
                 $timeout(displayData, 2000);
             }else{
