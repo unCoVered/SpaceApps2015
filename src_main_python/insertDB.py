@@ -18,9 +18,6 @@ if __name__ == '__main__':
         if i % 30 == 0:
             print "Data:", float(i)/total*100,"%"
 
-        v['loc'] = {}
-        v['loc']['type'] = 'Point'
-        v['loc']['coordinates'] = [float(v['coord']['longitude']), float(v['coord']['latitude'])]
         i += 1
         col.insert(v)
 
