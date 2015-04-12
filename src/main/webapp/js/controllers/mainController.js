@@ -32,7 +32,6 @@ angular.module('starter')
         $scope.submit = function () {
 
             $scope.dataCollection = "";
-            $scope.hiddenSpinner = false;
             $scope.showReplay = false;
             var has2dates = false;
             var tmp1 = 0;
@@ -47,6 +46,7 @@ angular.module('starter')
                     $scope.validDates(tmp1, tmp2);
                     has2dates = true;
                 }
+                $scope.hiddenSpinner = false;
                 var data = geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,
                                                 tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates, servicio);
 

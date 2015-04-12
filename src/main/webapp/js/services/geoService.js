@@ -66,8 +66,10 @@ angular.module('starter')
             var MAX_ZOOM = 8;
 
             // SPAIN, OLÉ, TORTILLA
-            var MAP_LAT = 41.68337;
-            var MAP_LON = -0.8883134;
+            //var MAP_LAT = 41.68337;
+            //var MAP_LON = -0.8883134;
+            var MAP_LAT = 37.1834331;
+            var MAP_LON = -78.5549069;
 
             //===========================//
             ////// LEAFLET BASE MAP ///////
@@ -147,7 +149,13 @@ angular.module('starter')
                 },
                 onEachFeature: function(feature, layer){
                     if (feature.properties && feature.properties.popupContent) {
-                        layer.bindPopup(feature.properties.popupContent);
+                        layer.bindPopup(feature.properties.popupContent + "\n" + (feature.properties.flow/feature.properties.meanFlow));
+                        layer.on('mouseover', function (e) {
+                            this.openPopup();
+                        });
+                        layer.on('mouseout', function (e) {
+                            this.closePopup();
+                        });
                     }
                 }
             }).addTo($scope.map);
@@ -155,9 +163,9 @@ angular.module('starter')
 
         function filterColor(mean,current){
             var d = current/mean;
-            if(d>1.3){
+            if(d>2.7){
                 return UTIL.COLORS.RED;
-            }else if(d<0.7){
+            }else if(d<1){
                 return UTIL.COLORS.YELLOW;
             }else{
                 return UTIL.COLORS.GREEN;

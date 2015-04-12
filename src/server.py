@@ -53,7 +53,7 @@ def pos():
                 re_dic.append(dict)
 
     geo_array = []
-    print "gen data!!!"
+    #print "gen data!!!"
     for i in range(total_dates):
         dummy_dir = {'type': "FeatureCollection", 'features': []}
         for point in re_dic:
