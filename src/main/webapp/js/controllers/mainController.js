@@ -24,12 +24,15 @@ angular.module('starter')
         $scope.errorMessage = "";
         $scope.showProgress = false;
         $scope.showReplay = false;
+        $scope.hiddenSpinner = true;
         $scope.count = 0;
         $scope.loaded_per = 0;
         $scope.dataCollection = "";
 
         $scope.submit = function () {
 
+            $scope.dataCollection = "";
+            $scope.hiddenSpinner = false;
             $scope.showReplay = false;
             var has2dates = false;
             var tmp1 = 0;
@@ -47,9 +50,6 @@ angular.module('starter')
                 var data = geoService.getData($scope.swlat,$scope.swlon,$scope.nelat,$scope.nelon,
                                                 tmp1,$scope.date1hours,tmp2,$scope.date2hours,has2dates, servicio);
 
-                //$scope.dataCollection = UTIL.TEST_POINT;
-                //console.log($scope.dataCollection);
-                //displayData();
                 $scope.date2 = "";
 
             } else {
@@ -102,6 +102,7 @@ angular.module('starter')
         //===========================//
 
         function servicio(data){
+            $scope.hiddenSpinner = true;
             $scope.dataCollection = data;
             displayData();
         }
@@ -111,10 +112,10 @@ angular.module('starter')
             geoService.placeGeoJSON($scope, $scope.dataCollection[$scope.count]);
             $scope.countTo = $scope.dataCollection.length;
             $scope.count = ($scope.count) % $scope.dataCollection.length;
-            $scope.loaded_per = ($scope.count+1)/$scope.countTo * 100;
+            $scope.loaded_per = Math.floor(($scope.count+1)/$scope.countTo * 100);
             $scope.count++;
             if($scope.count < $scope.dataCollection.length){
-                $timeout(displayData, 500);
+                $timeout(displayData, 100);
             }else{
                 $scope.showProgress = false;
                 $scope.showReplay = true;

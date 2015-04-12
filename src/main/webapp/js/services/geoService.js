@@ -155,9 +155,9 @@ angular.module('starter')
 
         function filterColor(mean,current){
             var d = current/mean;
-            if(d>1.1){
+            if(d>1.3){
                 return UTIL.COLORS.RED;
-            }else if(d<0.9){
+            }else if(d<0.7){
                 return UTIL.COLORS.YELLOW;
             }else{
                 return UTIL.COLORS.GREEN;
